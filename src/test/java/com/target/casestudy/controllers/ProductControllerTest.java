@@ -22,6 +22,7 @@ public class ProductControllerTest {
     public void getNameById() {
         int id = 13860428;
         ResponseEntity<?> name = productController.getNameById(id);
+        System.out.println(name.getBody());
     }
 
     @Test
