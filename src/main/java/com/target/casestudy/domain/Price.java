@@ -6,7 +6,7 @@ package com.target.casestudy.domain;
  */
 public class Price {
 
-    private long productNumber;
+    private int productNumber;
 
     private double price;
 

@@ -23,7 +23,7 @@ public class ProductServiceImpl implements ProductService {
      * @return
      */
     @Override
-    public Price findPriceById(Long id) {
+    public Price findPriceById(int id) {
         return null;
     }
 
@@ -33,7 +33,7 @@ public class ProductServiceImpl implements ProductService {
      * @return
      */
     @Override
-    public String findNameById(Long id) {
+    public String findNameById(int id) {
         // placeholder
         return "Hello: "+ id;
     }
@@ -44,7 +44,7 @@ public class ProductServiceImpl implements ProductService {
      * @return
      */
     @Override
-    public Price updatePriceById(Long id) {
+    public Price updatePriceById(int id) {
         return null;
     }
 
@@ -53,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
      * @param id
      */
     @Override
-    public void deletePriceById(Long id) {
+    public void deletePriceById(int id) {
 
     }
 }

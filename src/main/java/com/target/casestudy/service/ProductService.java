@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
 @Service
 public interface ProductService {
 
-    Price findPriceById(Long id);
+    Price findPriceById(int id);
 
-    String findNameById(Long id);
+    String findNameById(int id);
 
-    Price updatePriceById(Long id);
+    Price updatePriceById(int id);
 
-    void deletePriceById(Long id);
+    void deletePriceById(int id);
 
 }
