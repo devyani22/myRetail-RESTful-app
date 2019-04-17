@@ -8,19 +8,12 @@ import static org.junit.Assert.*;
 public class ProductServiceImplTest {
 
     @Before
-    public void setUp() throws Exception {
-    }
-
-    @Test
-    public void findPriceById() {
-    }
-
-    @Test
-    public void findNameById() {
+    public void setUp() {
     }
 
     @Test
     public void updatePriceById() {
+
     }
 
     @Test

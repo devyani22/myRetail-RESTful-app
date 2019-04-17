@@ -1,8 +1,9 @@
 package com.target.casestudy.controllers;
 
+import com.target.casestudy.domain.Price;
+import com.target.casestudy.domain.Product;
 import com.target.casestudy.service.ProductService;
 import com.target.casestudy.utils.ApiResponse;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * ProductController.java - This class contains API methods for Product related details
@@ -26,7 +28,7 @@ class ProductController {
     private ProductService productService;
 
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/name/{id}")
     public ResponseEntity<?> getNameById(@PathVariable("id") int id) {
 
         String response
@@ -38,21 +40,87 @@ class ProductController {
         }
 
         JSONObject jsonObject = new JSONObject(response);
-
         JSONObject product = (JSONObject) jsonObject.get("product");
         JSONObject item = (JSONObject) product.get("item");
         JSONObject product_description = (JSONObject) item.get("product_description");
-        String title = (String) product_description.get("title");
+        String newResponse = (String) product_description.get("title");
 
-        return new ResponseEntity<>(title, HttpStatus.OK);
+        return new ResponseEntity<>(newResponse, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<?> getProductDetails(@PathVariable("id") int id) {
+
+        // get product name
+        ResponseEntity<?> response = getNameById(id);
+
+        if (response == null || response.getBody() == null) {
+            return new ResponseEntity<>(new ApiResponse("Product: " + id + " not found."),
+                    HttpStatus.NOT_FOUND);
+        }
+        Product product = new Product();
+        product.setProductName(response.getBody().toString());
+        product.setProductId(id);
+
+        // get product price
+        Optional<Price> optional = productService.findPriceById(id);
+        optional.ifPresent(price -> product.setCurrentPrice(optional.get()));
+
+        return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
     @PutMapping(value = "/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void updatePrice(){}
+    ResponseEntity<?> updatePrice(@PathVariable("id") int id, @RequestBody Price price) {
+        Price response = productService.updateProductPrice(price);
+
+        if (response == null) {
+            return new ResponseEntity<>(new ApiResponse("Product: " + id + " not found."),
+                    HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/prices")
+    ResponseEntity<?> getAllPrices() {
+        List<Price> response = productService.findAll();
+
+        if (response == null) {
+            return new ResponseEntity<>(new ApiResponse("No products available"),
+                    HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/prices/{id}")
+    ResponseEntity<?> getPriceById(@PathVariable("id") int id) {
+        Optional<Price> response = productService.findPriceById(id);
+
+        if (!response.isPresent()){
+            return new ResponseEntity<>(new ApiResponse("Product: " + id + " not found."),
+                    HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(response.get(), HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/prices/{id}")
+    void deletePriceById(@PathVariable("id") int id, @RequestBody Price price) {
+       productService.deletePriceById(id);
+    }
+
+    @DeleteMapping(value = "/prices")
+    void deletePrices() {
+        productService.deletePrices();
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public void handleTodoNotFound(Exception ex) {
+    }
 
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+
 }

@@ -1,9 +1,8 @@
 package com.target.casestudy.utils;
 
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-
-@Data
+/**
+ * ApiResponse
+ */
 public class ApiResponse {
 
     private String message;
