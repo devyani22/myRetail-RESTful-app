@@ -1,6 +1,6 @@
-package com.target.casestudy.service;
+package com.target.myretail.service;
 
-import com.target.casestudy.domain.Price;
+import com.target.myretail.domain.Price;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

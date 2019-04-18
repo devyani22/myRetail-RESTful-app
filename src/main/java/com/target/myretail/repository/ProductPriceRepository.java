@@ -1,6 +1,6 @@
-package com.target.casestudy.repository;
+package com.target.myretail.repository;
 
-import com.target.casestudy.domain.Price;
+import com.target.myretail.domain.Price;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**

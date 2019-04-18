@@ -1,4 +1,4 @@
-package com.target.casestudy.domain;
+package com.target.myretail.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

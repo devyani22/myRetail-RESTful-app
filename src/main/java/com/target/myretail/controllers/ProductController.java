@@ -1,9 +1,9 @@
-package com.target.casestudy.controllers;
+package com.target.myretail.controllers;
 
-import com.target.casestudy.domain.Price;
-import com.target.casestudy.domain.Product;
-import com.target.casestudy.service.ProductService;
-import com.target.casestudy.utils.ApiResponse;
+import com.target.myretail.domain.Price;
+import com.target.myretail.domain.Product;
+import com.target.myretail.service.ProductService;
+import com.target.myretail.utils.ApiResponse;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

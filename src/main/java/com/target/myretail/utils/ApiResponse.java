@@ -1,4 +1,4 @@
-package com.target.casestudy.utils;
+package com.target.myretail.utils;
 
 /**
  * ApiResponse

@@ -1,7 +1,7 @@
-package com.target.casestudy.service;
+package com.target.myretail.service;
 
-import com.target.casestudy.domain.Price;
-import com.target.casestudy.repository.ProductPriceRepository;
+import com.target.myretail.domain.Price;
+import com.target.myretail.repository.ProductPriceRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
