@@ -8,9 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 /**
  * ProductServiceImpl.java - This class contains implementation of service methods that perform the main
@@ -21,6 +19,8 @@ import java.util.Set;
 public class ProductServiceImpl implements ProductService {
 
     public static final Logger log = LoggerFactory.getLogger(ProductServiceImpl.class);
+
+    private static final Currency currency = Currency.getInstance(Locale.getDefault());
 
     @Autowired
     ProductPriceRepository productPriceRepository;
@@ -44,8 +44,6 @@ public class ProductServiceImpl implements ProductService {
     public Price updateProductPrice(Price price) {
         return productPriceRepository.save(price);
     }
-
-
 
     /**
      * Delete record by id

@@ -12,7 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Currency;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 /**
@@ -23,6 +25,7 @@ import java.util.Optional;
 @RequestMapping("/products")
 class ProductController {
     private static final String PRODUCT_RESOURCE_URL = "https://redsky.target.com/v2/pdp/tcin";
+    private static final Currency currency = Currency.getInstance(Locale.getDefault());
 
     @Autowired
     private ProductService productService;
