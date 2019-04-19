@@ -6,6 +6,10 @@ myRetail is a rapidly growing company with HQ in Richmond, VA and over 200 store
 
 This is a Proof Of Concept (PoC) for products API that aggregates product data from multiple sources and returns it as JSON to the consumer.
 
+## Application Flow Design
+
+![Alt text](myretail_seq_diagram.jpg?raw=true "myRetail Sequence Diagram")
+
 ## API URL structure
 ```
 GET Products - /products/prices
