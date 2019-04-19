@@ -6,21 +6,30 @@ myRetail is a rapidly growing company with HQ in Richmond, VA and over 200 store
 
 This is a Proof Of Concept (PoC) for products API that aggregates product data from multiple sources and returns it as JSON to the consumer.
 
-### API url structure
-
-GET Products - /products/prices
-GET Product Name - products/{id}/name
-GET Product Price - products/{id}/price
-GET Product Details - /products/{id}
-PUT Product Price - /products/{id}/price
-GET All Product Prices - /products/prices
-
+## API URL structure
 ```
-Examples
+GET Products - /products/prices
+
+GET Product Name - products/{id}/name
+
+GET Product Price - products/{id}/price
+
+GET Product Details - /products/{id}
+
+PUT Product Price - /products/{id}/price
+
+GET All Product Prices - /products/prices
+```
+
+### Examples
 ```
 GET Product Name - localhost:8080/products/13860428/name
+
 GET Product Details - localhost:8080/products/13860428
+
 GET Product Price - localhost:8080/products/13860428/price
+
+```
 
 ### Development Environment
 
@@ -33,7 +42,6 @@ GET Product Price - localhost:8080/products/13860428/price
 * Unit Testing library - JUnit, Mockito
 * API Integration Testing - PostMan
 * Operating System - MacOS Mojave
-
 
 ## Running the application
 
@@ -52,11 +60,6 @@ Unit tests
 End to end testing
 PostMan Collection Link
 https://www.getpostman.com/collections/5195682166181eb98108
-
-
-## Sequence Diagram
-
-
 
 ## Authors
 
