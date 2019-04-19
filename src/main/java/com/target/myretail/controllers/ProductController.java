@@ -4,7 +4,7 @@ import com.target.myretail.domain.Price;
 import com.target.myretail.domain.Product;
 import com.target.myretail.service.ProductService;
 import com.target.myretail.utils.ApiResponse;
-import org.json.JSONObject;
+import com.target.myretail.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
@@ -12,9 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Currency;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 /**
@@ -25,7 +23,7 @@ import java.util.Optional;
 @RequestMapping("/products")
 class ProductController {
     private static final String PRODUCT_RESOURCE_URL = "https://redsky.target.com/v2/pdp/tcin";
-    private static final Currency currency = Currency.getInstance(Locale.getDefault());
+    private static final String PRODUCT_NAME_JSON_KEY = "title";
 
     @Autowired
     private ProductService productService;
@@ -42,13 +40,9 @@ class ProductController {
                     HttpStatus.NOT_FOUND);
         }
 
-        JSONObject jsonObject = new JSONObject(response);
-        JSONObject product = (JSONObject) jsonObject.get("product");
-        JSONObject item = (JSONObject) product.get("item");
-        JSONObject product_description = (JSONObject) item.get("product_description");
-        String newResponse = (String) product_description.get("title");
+        JsonUtils.getValueFromResponse(response, PRODUCT_NAME_JSON_KEY);
 
-        return new ResponseEntity<>(newResponse, HttpStatus.OK);
+        return new ResponseEntity<>(JsonUtils.getProductTitle(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
