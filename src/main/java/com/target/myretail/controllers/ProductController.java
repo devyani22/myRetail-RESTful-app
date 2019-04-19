@@ -66,7 +66,7 @@ class ProductController {
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = "/{id}/price")
     ResponseEntity<?> updatePrice(@PathVariable("id") int id, @RequestBody Price price) {
         Price response = productService.updateProductPrice(price);
 
