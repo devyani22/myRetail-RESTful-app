@@ -47,21 +47,44 @@ GET Product Price - localhost:8080/products/13860428/price
 * API Integration Testing - PostMan
 * Operating System - MacOS Mojave
 
+## Installing and Running mongoDB
+
+  ### With HomeBrew
+
+  ```
+  Open the Terminal app and type brew update.
+  After updating Homebrew brew install mongodb
+  After downloading Mongo, create the “db” directory. This is where the Mongo data files will live. 
+  You can create the directory in the default location by running mkdir -p /data/db
+  Make sure that the /data/db directory has the right permissions by running
+
+  > sudo chown -R `id -un` /data/db
+  > # Enter your password
+
+  Run the Mongo daemon, in one of your terminal windows run mongod. This should start the Mongo server.
+  Run the Mongo shell, type mongo in another terminal window, to access data in MongoDB.
+  To exit the Mongo shell run quit()
+  To stop the Mongo daemon hit ctrl-c
+  ```
 ## Running the application
 
+```
 java -jar target/myretail-0.0.1-SNAPSHOT.jar com.target.myretail.service.myRetailApplication
-
+```
 OR from the project root
-
+```
 mvn spring-boot:run
-
+```
+ 
 ## Testing
 
 Unit tests
+
 1) com.target.myretail.service.ProductServiceImplTest.java
 2) com.target.myretail.utils.JsonUtilsTest.java
 
 End to end testing
+
 PostMan Collection Link
 https://www.getpostman.com/collections/5195682166181eb98108
 
