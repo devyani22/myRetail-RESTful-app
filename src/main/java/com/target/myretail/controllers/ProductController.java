@@ -29,7 +29,7 @@ class ProductController {
     private ProductService productService;
 
 
-    @GetMapping(value = "/name/{id}")
+    @GetMapping(value = "/{id}/name")
     public ResponseEntity<?> getNameById(@PathVariable("id") int id) {
 
         String response
@@ -88,7 +88,7 @@ class ProductController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/prices/{id}")
+    @GetMapping(value = "/{id}/price")
     ResponseEntity<?> getPriceById(@PathVariable("id") int id) {
         Optional<Price> response = productService.findPriceById(id);
 
@@ -100,7 +100,7 @@ class ProductController {
         return new ResponseEntity<>(response.get(), HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/prices/{id}")
+    @DeleteMapping(value = "/{id}/price")
     void deletePriceById(@PathVariable("id") int id, @RequestBody Price price) {
        productService.deletePriceById(id);
     }
